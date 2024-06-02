@@ -239,30 +239,36 @@
 
 </script>
 <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbwZXzGMrZ6WENxLr-M0z7iNrThCzaCS2Z15TomnE9lM-h4GXe6FVw2Vr3ASZmD6QpAS/exec';
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzZtbUR4DfPuM27Dn9QnTsLqoek44BSunTM1UQo9l-kjPB07pt2ES-g4lOBIEZAHtwI/exec';
   const form = document.forms['submit-to-google-sheet'];
   const toast = document.getElementById('toast');
 
   form.addEventListener('submit', e => {
-    e.preventDefault()
-    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-      .then(response => {
-        console.log('Success!', response)
-        toast.textContent = 'Form submitted!';
-        toast.classList.add('show');
-        setTimeout(function () {
-          toast.classList.remove('show');
-          form.reset();
-        }, 2000);
-      }).catch(error => {
-        console.error('Error!', error.message)
-        toast.textContent = 'Error while submitting!';
-        toast.classList.add('show');
-        setTimeout(function () {
-          toast.classList.remove('show');
-        }, 2000);
-      })
-  })
+    e.preventDefault();
+    fetch(scriptURL, {
+      method: 'POST',
+      mode: 'cors',
+      body: new FormData(form)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success!', data);
+      toast.textContent = 'Form submitted!';
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+        form.reset();
+      }, 2000);
+    })
+    .catch(error => {
+      console.error('Error!', error.message);
+      toast.textContent = 'Error while submitting!';
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2000);
+    });
+  });
 </script>
 </body>
 <footer>
