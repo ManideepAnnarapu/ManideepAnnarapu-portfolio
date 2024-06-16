@@ -459,7 +459,20 @@ html {
 .project-details a {
   margin-left: auto; /* Ensure the button stays to the right */
 }
+.technical-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
 
+.tech-box {
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: #333;
+}
 
 /*--------------- contact -------------*/
 .contact-left h1 {
